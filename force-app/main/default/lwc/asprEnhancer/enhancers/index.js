@@ -1,0 +1,1 @@
+export { withDependencies } from "./withDependencies";

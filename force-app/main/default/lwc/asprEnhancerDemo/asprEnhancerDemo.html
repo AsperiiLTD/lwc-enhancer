@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Enhancer Demo">
+       <template if:true={isLoading}>
+        <p class="slds-p-horizontal_small">Loading moment..</p>
+       </template>
+       <template if:false={isLoading}>
+            <div class="slds-p-horizontal_small">
+                <h2>Choose a time format</h2>
+                <lightning-button-group>
+                    <template for:each={timeFormatsButtons} for:item="timeFormat">
+                        <lightning-button key={timeFormat.format} variant={timeFormat.variant} onclick={timeFormat.onClick} label={timeFormat.format}></lightning-button>
+                    </template>
+                </lightning-button-group>
+            </div>
+        <p class="slds-p-horizontal_small current-time-display">{currentTimeDisplay}</p>
+       </template>
+    </lightning-card>
+</template>
