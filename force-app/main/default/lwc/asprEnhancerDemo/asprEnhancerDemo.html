@@ -4,15 +4,19 @@
         <p class="slds-p-horizontal_small">Loading moment..</p>
        </template>
        <template if:false={isLoading}>
+        
+        <p class="slds-p-horizontal_small"><lightning-input type="text" value={nameSearch} onchange={onSetValue} label="Search people by name" data-property="nameSearch"></lightning-input></p>
+        <p class="slds-p-horizontal_small"><lightning-input type="date" value={dateSearch} onchange={onSetValue} label="Search people born before" data-property="dateSearch"></lightning-input></p>
+            <p class="slds-p-horizontal_small"><strong>Selected people are</strong>:</p>
             <div class="slds-p-horizontal_small">
-                <h2>Choose a time format</h2>
-                <lightning-button-group>
-                    <template for:each={timeFormatsButtons} for:item="timeFormat">
-                        <lightning-button key={timeFormat.format} variant={timeFormat.variant} onclick={timeFormat.onClick} label={timeFormat.format}></lightning-button>
+                <ul>
+                    <template for:each={peopleToShow} for:item="selectedPerson">
+                        <li key={selectedPerson.id}>
+                            <span>{selectedPerson.name} - {selectedPerson.birthDate}</span>
+                        </li>
                     </template>
-                </lightning-button-group>
+                </ul>
             </div>
-        <p class="slds-p-horizontal_small current-time-display">{currentTimeDisplay}</p>
-       </template>
+        </template>
     </lightning-card>
 </template>
