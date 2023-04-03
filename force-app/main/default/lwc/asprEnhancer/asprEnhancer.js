@@ -4,3 +4,4 @@ export { loadScriptWithCache } from "./lib/loadScriptWithCache";
 
 export { withDependencies } from "./enhancers/withDependencies";
 export { withOnSetValue } from "./enhancers/withOnSetValue";
+export { withLogOnClick } from "./enhancers/withLogOnClick";
