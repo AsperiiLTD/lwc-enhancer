@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import { enhance, withOnSetValue, withDependencies } from 'c/asprEnhancer';
+import { enhance, withDependencies } from 'c/asprEnhancer';
 import momentScript from '@salesforce/resourceUrl/moment';
 
 const peopleData = {
@@ -32,10 +32,6 @@ const peopleData = {
 
 class AsprEnhancerDemo extends LightningElement {
     data = peopleData;
-    
-    // This property is controlled with the withOnSetValue enhancer
-    nameSearch;
-    dateSearch;
 
     get options() {
         return Object.keys(this.data).map(personId => ({ 
@@ -44,25 +40,14 @@ class AsprEnhancerDemo extends LightningElement {
         }))
     }
 
-    filterByDate(person) {
-        return this.dateSearch ? window.moment(person.birthDate).isBefore(this.dateSearch) : true
-    }
-
-    filterByName(person) {
-        return this.nameSearch ? person.name.toLowerCase().includes(this.nameSearch.toLowerCase()) : true;
-    }
-
     get peopleToShow() {
-        // This property is from the withDependencies enhancer
+        // The boolean property is from the withDependencies enhancer
         if (this.isLoading) {
             return [];
         }
 
         const { moment } = window;
         return Object.values(this.data)
-            .filter(person => {
-                return this.filterByDate(person) && this.filterByName(person);
-            })
             .map(person => ({
                 ...person,
                 birthDate: moment(person.birthDate).format("ddd, MMM DD yyyy")
@@ -70,16 +55,20 @@ class AsprEnhancerDemo extends LightningElement {
     }
 
     connectedCallback() {
+        // The promise property is from the withDependencies enhancer
         this.isLoadingPromise.then(() => {
             console.log("LOADED MOMENT INSTANCE SUCCESSFULLY: ", window.moment);
         })
     }
 }
 
-
-
-
-export default enhance(AsprEnhancerDemo, [ 
-    withOnSetValue(),
+// Enhancing our component with the withDependencies enhancer, supplying the moment static resource
+export default enhance(AsprEnhancerDemo, [
     withDependencies([ momentScript ])
 ]);
+
+
+
+
+
+
