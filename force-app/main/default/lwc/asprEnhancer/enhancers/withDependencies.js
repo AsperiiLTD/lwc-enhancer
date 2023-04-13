@@ -1,7 +1,7 @@
 import { loadScriptWithCache } from "../lib/loadScriptWithCache";
 import { loadStyleWithCache } from "../lib/loadStyleWithCache";
 
-export const withDependencies = (dependencies = [], stylesheets = []) => {
+export const withDependencies = (scripts = [], stylesheets = []) => {
     return WrappedComponent => {
         const originalConnectedCallback =  WrappedComponent.prototype.connectedCallback;
         return class extends WrappedComponent {
@@ -10,7 +10,7 @@ export const withDependencies = (dependencies = [], stylesheets = []) => {
 
             connectedCallback() {
                 this.isLoadingPromise = Promise.all([
-                        ...dependencies.map(script => loadScriptWithCache(this, script)), 
+                        ...scripts.map(script => loadScriptWithCache(this, script)), 
                         ...stylesheets.map(stylesheet => loadStyleWithCache(this, stylesheet))
                     ]).then(() => {
                     typeof originalConnectedCallback === "function" && originalConnectedCallback.call(this);

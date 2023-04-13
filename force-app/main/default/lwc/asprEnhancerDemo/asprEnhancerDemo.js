@@ -70,10 +70,14 @@ class AsprEnhancerDemo extends LightningElement {
     }
 
     connectedCallback() {
-        console.log("MOMENT INSTANCE: ", window.moment);
+        this.isLoadingPromise.then(() => {
+            console.log("LOADED MOMENT INSTANCE SUCCESSFULLY: ", window.moment);
+        })
     }
-
 }
+
+
+
 
 export default enhance(AsprEnhancerDemo, [ 
     withOnSetValue(),

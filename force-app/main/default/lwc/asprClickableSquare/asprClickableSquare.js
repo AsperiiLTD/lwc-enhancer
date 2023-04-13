@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import { enhance, withLogOnClick } from '../asprEnhancer/asprEnhancer';
+import { enhance, withLogOnClick } from 'c/asprEnhancer';
 
 class AsprClickableSquare extends LightningElement {
     get squareStyle() {

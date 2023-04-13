@@ -1,7 +1,7 @@
 import { LightningElement } from 'lwc';
 
 // We import both the enhance utility function and the specific enhancer we want to use
-import { enhance, withLogOnClick } from '../asprEnhancer/asprEnhancer';
+import { enhance, withLogOnClick } from 'c/asprEnhancer';
 
 class AsprClickableCircle extends LightningElement {
     get circleStyle() {

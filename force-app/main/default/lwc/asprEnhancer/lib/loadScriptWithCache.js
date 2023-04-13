@@ -4,10 +4,7 @@ import { loadScript } from "lightning/platformResourceLoader";
 const alreadyLoaded = new Set();
 
 export const loadScriptWithCache = (component, src) => {
-  if (
-    alreadyLoaded.has(src) ||
-    document.querySelector(`script[data-locker-src="${src}"]`)
-  ) {
+  if (alreadyLoaded.has(src) || document.querySelector(`script[data-locker-src="${src}"]`)) {
     return Promise.resolve();
   }
 
