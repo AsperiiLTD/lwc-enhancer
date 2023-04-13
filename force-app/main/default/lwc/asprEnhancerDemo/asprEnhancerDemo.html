@@ -4,8 +4,12 @@
             <p class="slds-p-horizontal_small">Loading moment..</p>
        </template>
        <template if:false={isLoading}>
-            <p class="slds-p-horizontal_small"><lightning-input type="text" value={nameSearch} onchange={onSetValue} label="Search people by name" data-property="nameSearch"></lightning-input></p>
-            <p class="slds-p-horizontal_small"><lightning-input type="date" value={dateSearch} onchange={onSetValue} label="Search people born before" data-property="dateSearch"></lightning-input></p>
+            <p class="slds-p-horizontal_small">
+                <lightning-input type="text" value={nameSearch} onchange={onSetValue} label="Search people by name" data-property="nameSearch"></lightning-input>
+            </p>
+            <p class="slds-p-horizontal_small">
+                <lightning-input type="date" value={dateSearch} onchange={onSetValue} label="Search people born before" data-property="dateSearch"></lightning-input>
+            </p>
                 <p class="slds-p-horizontal_small"><strong>Selected people are</strong>:</p>
                 <div class="slds-p-horizontal_small">
                     <ul>
